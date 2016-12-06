@@ -66,13 +66,14 @@ class CourseTimeAndLocation():
         return jsonpickle.encode(self)
 
 class Course():
-    def __init__(self,name=None,teachers=None,number=None,course_time_location=None,exam_time=None,school_district=None):
+    def __init__(self,name=None,teachers=None,number=None,course_time_location=None,exam_time=None,school_district=None,raw_time=None):
         self.name=name
         self.teachers=teachers
         self.number=number
         self.course_time_location=course_time_location
         self.exam_time=exam_time
         self.school_district=school_district
+        self.raw_time=raw_time
     
     def parse(html_content:str):
         '''Parses formatted raw html_content to a Course object
@@ -105,7 +106,7 @@ class Course():
         exam_time=all_nodes[9].get_text()
         #return time
         #return (name,teachers,number,course_time_location,exam_time,school_district)
-        return Course(name,teachers,number,course_time_location,exam_time,school_district)
+        return Course(name,teachers,number,course_time_location,exam_time,school_district,time.text)
 
     def toJSON(self):
         jsonpickle.set_preferred_backend("simplejson")

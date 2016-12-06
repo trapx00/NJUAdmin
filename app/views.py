@@ -29,3 +29,11 @@ def course():
     else:
         return render_template("tables.html")
     
+@app.route("/register",methods=["GET","POST"])
+def register():
+    if request.method=="GET":
+        render_template("register.html")
+    else:
+        name=request.form["name"]
+        student_id=request.form["student_id"]
+        

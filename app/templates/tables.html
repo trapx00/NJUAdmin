@@ -1,263 +1,195 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %} {% block page_content %}
 
-<head>
-
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="">
-	<meta name="author" content="">
-
-	<title>NJUAdmin</title>
-
-	<!-- Bootstrap Core CSS -->
-	<link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-	<!-- MetisMenu CSS -->
-	<link href="../static/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-	<!-- Custom CSS -->
-	<link href="../static/vendor/sb-admin-2/sb-admin-2.min.css" rel="stylesheet">
-
-	<!-- Custom Fonts -->
-	<link href="../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-	<script src="../static/vendor/jquery/jquery.min.js"></script>
-
-	<script src="../static/vendor/metisMenu/metisMenu.min.js"></script>
-
-	<script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-	<script src="../static/vendor/sb-admin-2/sb-admin-2.min.js"></script>
-
-	<script src="../static/js/course_table.js"></script>
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body>
-	<div class="wrapper">
-		<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-				<a class="navbar-brand" href="index.html">NJUAdmin</a>
+<div id="page-wrapper">
+	<div class="row">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">课程表</h1>
 			</div>
-			<ul class="nav navbar-top-links navbar-right">
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-						<i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-					</a>
-					<ul class="dropdown-menu dropdown-users">
-						<li><a href="#"><i class="fa fa-user fa-fw"></i> 用户信息</a>
-						</li>
-						<li><a href="#"><i class="fa fa-gear fa-fw"></i> 设置</a>
-						</li>
-						<li class="divider"></li>
-						<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-						</li>
-					</ul>
-					<!-- /.dropdown-user -->
-				</li>
-				</li>
-			</ul>
-			<div class="navbar-default sidebar" role="navigation">
-				<div class="sidebar-nav navbar-collapse">
-					<ul class="nav" id="side-menu">
-						<li>
-							<a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-						</li>
-						<li>
-							<a href="tables.html"><i class="fa fa-table fa-fw"></i> 课程表</a>
-						</li>
-						<li>
-							<a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
-						</li>
-						<li>
-							<a href="communication.html"><i class="fa fa-sitemap fa-fw"></i> 课程交流</a>
-						</li>
-						<li>
-							<a href="elements.html"><i class="fa fa-wrench fa-fw"></i> 开源插件</a>
-						</li>
-						<li>
-							<a href="website.html"><i class="fa fa-question fa-fw"></i> 常用网站</a>
-						</li>
-					</ul>
-				</div>
-		</nav>
-		<div id=page-wrapper>
-			<div class="row">
-				<div class="row">
-					<div class="col-lg-12">
-						<h1 class="page-header">课程表</h1>
-					</div>
-					<!-- /.col-lg-12 -->
-				</div>
+			<!-- /.col-lg-12 -->
+		</div>
+	</div>
+	<div>
+		<div class="col-sm-12">
+			<div class="input-group">
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-warning" onclick="refresh()">刷新</button>
+				</span>
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default" onclick="changeWeek(-1)">-1</button>
+				</span>
+				<input class="form-control text-center" type="text" readonly="readonly" placeholder="周数" id="week"/>
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default" onclick="changeWeek(1)">+1</button>
+				</span>
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-primary" onclick="writeTable()">就是这周！</button>
+				</span>
 			</div>
-			<div>
-				<div class="col-sm-12">
-					<input type="text" placeholder="Username" id="username" />
-					<input type="password" placeholder="Password" id="password" />
-					<input type="text" placeholder="Week" id="week" />
-					<button class="btn btn-primary" onclick="requireCourseTable()">Require</button>
-					<button class="btn btn-primary" onclick="clearTable()">Clear</button>
-					<br/>
-					<table class="table table-striped table-bordered table-hover" style="width: 100%; z-index: 1" id="course_table">
-						<thead>
-							<tr role="row">
-								<th align="center">
-								</th>
-								<th>
-									周一</th>
-								<th>
-									周二</th>
-								<th>
-									周三</th>
-								<th aria-sort="ascending">
-									周四</th>
-								<th aria-sort="ascending">
-									周五</th>
-								<th aria-sort="ascending">
-									周六</th>
-								<th aria-sort="ascending">
-									周日</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="gradeA odd" role="row">
-								<td class=""><label type="label-yellow">1(8:00~8:50)</label></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-							</tr>
-							<tr class="gradeA even" role="row">
-								<td class="">2(9:00~8:50)</td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-							</tr>
-							<tr class="gradeA odd" role="row">
-								<td class="">3(10:10~11:00)</td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-							</tr>
-							<tr class="gradeA even" role="row">
-								<td class="">4(11:10~12:00)</td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-							</tr>
-							<!--<tr class="gradeA even" role="row">
+			<table class="table table-striped table-bordered table-hover" style="width: 100%; z-index: 1" id="course_table">
+				<thead>
+					<tr role="row">
+						<th align="center">
+						</th>
+						<th>
+							周一</th>
+						<th>
+							周二</th>
+						<th>
+							周三</th>
+						<th aria-sort="ascending">
+							周四</th>
+						<th aria-sort="ascending">
+							周五</th>
+						<th aria-sort="ascending">
+							周六</th>
+						<th aria-sort="ascending">
+							周日</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="gradeA odd" role="row">
+						<td class="">1(8:00~8:50)</td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+					</tr>
+					<tr class="gradeA even" role="row">
+						<td class="">2(9:00~8:50)</td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+					</tr>
+					<tr class="gradeA odd" role="row">
+						<td class="">3(10:10~11:00)</td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+					</tr>
+					<tr class="gradeA even" role="row">
+						<td class="">4(11:10~12:00)</td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+					</tr>
+					<tr class="gradeA even" role="row" id="noon">
 								<td colspan="8">
 									<p class="text-center">午休(12:00~2:00) 睡觉去！</p>
 								</td>
-							</tr>-->
 							</tr>
-							<tr class="gradeA odd" role="row">
-								<td class="">5(2:00~2:50)</td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-							</tr>
-							<tr class="gradeA even" role="row">
-								<td class="">6(3:00~3:50)</td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-							</tr>
-							<tr class="gradeA odd" role="row">
-								<td class="">7(4:10~5:00)</td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-							</tr>
-							<tr class="gradeA even" role="row">
-								<td class="">8(5:10~6:00)</td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-							</tr>
-							<tr class="gradeA odd" role="row">
-								<td class="">9(6:30~7:20)</td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-							</tr>
-							<tr class="gradeA even" role="row">
-								<td class="">10(7:30~8:20)</td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-							</tr>
-							</tr>
-							<tr class="gradeA even" role="row">
-								<td class="">11(8:30~9:20)</td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-							</tr>
-						</tbody>
-						</thead>
-					</table>
+					</tr>
+					<tr class="gradeA odd" role="row">
+						<td class="">5(2:00~2:50)</td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+					</tr>
+					<tr class="gradeA even" role="row">
+						<td class="">6(3:00~3:50)</td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+					</tr>
+					<tr class="gradeA odd" role="row">
+						<td class="">7(4:10~5:00)</td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+					</tr>
+					<tr class="gradeA even" role="row">
+						<td class="">8(5:10~6:00)</td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+					</tr>
+					<tr class="gradeA odd" role="row">
+						<td class="">9(6:30~7:20)</td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+					</tr>
+					<tr class="gradeA even" role="row">
+						<td class="">10(7:30~8:20)</td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+					</tr>
+					</tr>
+					<tr class="gradeA even" role="row">
+						<td class="">11(8:30~9:20)</td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+						<td class=""></td>
+					</tr>
+				</tbody>
+				</thead>
+			</table>
+			<div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="detailed" aria-hidden="true" id="detailed">
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+							<h4 class="modal-title">课程详情</h4>
+						</div>
+						<div class="modal-body">
+							<h3 id="name"></h3>
+							<hr/>
+							<p id="teachers"></p>
+							<p id="location"></p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" data-dismiss="modal">好的我知道了</button>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="footer">
-				<p>Copyright 2016</p>
-			</div>
 		</div>
-</body>
+	</div>
+<script>
+	setCurrentWeek();
+</script>
+	{% endblock %}
