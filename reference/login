@@ -1,0 +1,247 @@
+GET /_ids_mobile/webLogin20_2?serialNo=0860046035395476&os=android&deviceName=ONEPLUS%20A3000&name=ONEPLUS%20A3000&apnsKey=120c83f7602ddb9562f HTTP/1.1
+Host: mids.nju.edu.cn
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Linux; Android 7.0; ONEPLUS A3000 Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/54.0.2840.85 Mobile Safari/537.36 iPortal/21.4
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,en-US;q=0.8
+X-Requested-With: cn.edu.nju.iportal
+
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+iptsvrName: mids1
+Set-Cookie: JSESSIONID=3D5C1D7B5E6303D0D4894616CB080607; Path=/; Secure
+Content-Type: text/html;charset=UTF-8
+Content-Length: 4336
+Date: Mon, 18 Apr 2016 15:00:47 GMT
+
+
+<!doctypehtml>
+<!--[ifltIE7]><html class="ie6oldie"><![endif]--> 
+<!--[ifIE7]><html class="ie7oldie"><![endif]-->
+<!--[ifIE8]><html class="ie8oldie"><![endif]-->
+<!--[ifgtIE8]><!-->
+<html>
+<!--<![endif]-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=0.8, user-scalable=0"/>
+<title>南京大学统一身份认证服务</title>
+<link href="/_mobile/njulogin/css/reset.css" rel="stylesheet" type="text/css">
+<link href="/_mobile/njulogin/css/boilerplate.css" rel="stylesheet" type="text/css">
+<link href="/_mobile/njulogin/css/login.css" rel="stylesheet" type="text/css">
+<!--[ifltIE9]>
+<script src="js/html5.js"></script>
+<![endif]-->
+<script src="/_mobile/njulogin/js/respond.min.js" ></script>
+<script type="text/javascript" src="/waitting/js/iPortalInit.js"></script>
+<script>
+	iPortal.onReady = function(){
+		closeIportal();
+	}
+	function closeIportal(){
+		if("" == "001"){
+			iPortal.closeWindow();
+		} else if("" == "002"){
+			alert("登录测试成功！");
+		}
+	}
+</script>
+</head>
+<body>
+<div id="page">
+  <div id="page-inner">
+    <div id="header">
+      <div id="logo"><img src="/_mobile/njulogin/images/logo.png"></div>
+    </div>
+    <div id="content-wrapper">
+      <div id="content">
+        <div id="login">
+		
+		<form action="https://mids.nju.edu.cn:443/_ids_mobile/webLogin20_2"  style="margin:0px;display: inline;"  name="Login"  method="post">
+        
+			<input type="hidden" name="encoded" value="false">
+			<input type="hidden" name="goto" value="">
+			<input type="hidden" name="gotoOnFail" value="">
+			<input type="hidden" name="IDToken0" value="">
+			<input type="hidden" name="loginLT" value="ad5704a3-c2c6-4791-a4f6-a94e98e62c63" />
+			<input type="hidden"  name="IDButton" value="Submit"  />
+            <div id="login-inner">
+              <p>
+                <label>用户名：</label>
+                <input type="text"  autocomplete="on" name="username"/>
+              </p>
+              <p>
+                <label>密&nbsp;&nbsp;&nbsp;码：</label>
+                <input type="password" name="password"/>
+              </p>
+              <p> <span id="button" >
+                  <input type="submit" class="button" id="login_btn" value="" />
+                <input type="button" class="button" id="forgetpassword_btn" />
+                </span> </p>
+            </div>
+          	<input type="hidden" name="gx_charset" value="UTF-8"></form>
+	
+        </div>
+      </div>
+    </div>
+    <div id="footer">
+      <div id="copyright">建设单位:南京大学网络信息中心</div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+(function(){
+	var addEvent = function(obj,envent,fun){
+		if (obj.addEventListener) {//\u5982\u679c\u662fFF
+            obj.addEventListener(envent, fun, false);
+        } else if (obj.attachEvent) {//\u5982\u679c\u662fIE
+            obj.attachEvent('on' + envent, fun);
+        } else {
+            obj['on' + envent] = fun;
+        }
+	}
+	var form = document.forms[0];
+	addEvent(form,"submit",function(e){
+		
+		if(form.username.value.length == 0){
+			form.username.focus();
+			if ( e && e.preventDefault ) 
+				e.preventDefault(); 
+			else
+				window.event.returnValue = false;  
+			return false;
+		}
+		if(form.password.value.length == 0){
+			form.password.focus();
+			if ( e && e.preventDefault ) 
+				e.preventDefault(); 
+			else
+				window.event.returnValue = false; 
+			return false;
+		}
+	});
+	var forgetPass =document.getElementById("forgetpassword_btn");
+
+	addEvent(forgetPass,"click",function(){
+		
+		window.location.href = "http://imp.nju.edu.cn/imp/iss/getBackPassword.do";
+	
+	});
+	var vcodeimg = document.getElementById("vcodeimg");
+	if(vcodeimg){
+		addEvent(vcodeimg,"click",function(){
+			var pos = vcodeimg.src.indexOf('?');
+			var url = pos > -1 ? vcodeimg.src.substring(0,pos):vcodeimg.src;
+			vcodeimg.src = url + "?" + Math.random();
+		});
+	}
+})();
+var errorCode = "";
+if(errorCode != null && errorCode.length > 0){
+	if("20001" == errorCode){
+		alert("用户名或密码错误，请重新输入");
+	}else if("20004" == errorCode){
+		alert("该学号/工号已不是在校师生了");
+	}else if("20002" == errorCode){
+		alert("账号被禁用");
+	}else if("20005" == errorCode){
+		alert("此账号已禁用");
+	}else{
+		alert(" 服务器响应异常，登录失败");
+	}
+}
+</script>
+</body>
+
+</html>
+GET /_mobile/njulogin/css/boilerplate.css HTTP/1.1
+Host: mids.nju.edu.cn
+Connection: keep-alive
+If-None-Match: W/"9842-1437359000000"
+If-Modified-Since: Mon, 20 Jul 2015 02:23:20 GMT
+User-Agent: Mozilla/5.0 (Linux; Android 7.0; ONEPLUS A3000 Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/54.0.2840.85 Mobile Safari/537.36 iPortal/21.4
+Accept: text/css,*/*;q=0.1
+Referer: https://mids.nju.edu.cn/_ids_mobile/webLogin20_2?serialNo=0860046035395476&os=android&deviceName=ONEPLUS%20A3000&name=ONEPLUS%20A3000&apnsKey=120c83f7602ddb9562f
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,en-US;q=0.8
+Cookie: JSESSIONID=3D5C1D7B5E6303D0D4894616CB080607
+X-Requested-With: cn.edu.nju.iportal
+
+HTTP/1.1 304 Not Modified
+Server: Apache-Coyote/1.1
+ETag: W/"9842-1437359000000"
+Date: Mon, 18 Apr 2016 15:00:47 GMT
+
+GET /_mobile/njulogin/css/login.css HTTP/1.1
+Host: mids.nju.edu.cn
+Connection: keep-alive
+If-None-Match: W/"5938-1441089180000"
+If-Modified-Since: Tue, 01 Sep 2015 06:33:00 GMT
+User-Agent: Mozilla/5.0 (Linux; Android 7.0; ONEPLUS A3000 Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/54.0.2840.85 Mobile Safari/537.36 iPortal/21.4
+Accept: text/css,*/*;q=0.1
+Referer: https://mids.nju.edu.cn/_ids_mobile/webLogin20_2?serialNo=0860046035395476&os=android&deviceName=ONEPLUS%20A3000&name=ONEPLUS%20A3000&apnsKey=120c83f7602ddb9562f
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,en-US;q=0.8
+Cookie: JSESSIONID=3D5C1D7B5E6303D0D4894616CB080607
+X-Requested-With: cn.edu.nju.iportal
+
+HTTP/1.1 304 Not Modified
+Server: Apache-Coyote/1.1
+ETag: W/"5938-1441089180000"
+Date: Mon, 18 Apr 2016 15:00:47 GMT
+
+GET /_mobile/njulogin/js/respond.min.js HTTP/1.1
+Host: mids.nju.edu.cn
+Connection: keep-alive
+If-None-Match: W/"3216-1437359058000"
+If-Modified-Since: Mon, 20 Jul 2015 02:24:18 GMT
+User-Agent: Mozilla/5.0 (Linux; Android 7.0; ONEPLUS A3000 Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/54.0.2840.85 Mobile Safari/537.36 iPortal/21.4
+Accept: */*
+Referer: https://mids.nju.edu.cn/_ids_mobile/webLogin20_2?serialNo=0860046035395476&os=android&deviceName=ONEPLUS%20A3000&name=ONEPLUS%20A3000&apnsKey=120c83f7602ddb9562f
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,en-US;q=0.8
+Cookie: JSESSIONID=3D5C1D7B5E6303D0D4894616CB080607
+X-Requested-With: cn.edu.nju.iportal
+
+HTTP/1.1 304 Not Modified
+Server: Apache-Coyote/1.1
+ETag: W/"3216-1437359058000"
+Date: Mon, 18 Apr 2016 15:00:47 GMT
+
+GET /_mobile/njulogin/images/logo.png HTTP/1.1
+Host: mids.nju.edu.cn
+Connection: keep-alive
+If-None-Match: W/"39545-1437359140000"
+If-Modified-Since: Mon, 20 Jul 2015 02:25:40 GMT
+User-Agent: Mozilla/5.0 (Linux; Android 7.0; ONEPLUS A3000 Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/54.0.2840.85 Mobile Safari/537.36 iPortal/21.4
+Accept: image/webp,image/*,*/*;q=0.8
+Referer: https://mids.nju.edu.cn/_ids_mobile/webLogin20_2?serialNo=0860046035395476&os=android&deviceName=ONEPLUS%20A3000&name=ONEPLUS%20A3000&apnsKey=120c83f7602ddb9562f
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,en-US;q=0.8
+Cookie: JSESSIONID=3D5C1D7B5E6303D0D4894616CB080607
+X-Requested-With: cn.edu.nju.iportal
+
+HTTP/1.1 304 Not Modified
+Server: Apache-Coyote/1.1
+ETag: W/"39545-1437359140000"
+Date: Mon, 18 Apr 2016 15:00:47 GMT
+
+GET /_mobile/njulogin/images/bt_forgetpassword_selected.png HTTP/1.1
+Host: mids.nju.edu.cn
+Connection: keep-alive
+If-None-Match: W/"5625-1437359368000"
+If-Modified-Since: Mon, 20 Jul 2015 02:29:28 GMT
+User-Agent: Mozilla/5.0 (Linux; Android 7.0; ONEPLUS A3000 Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/54.0.2840.85 Mobile Safari/537.36 iPortal/21.4
+Accept: image/webp,image/*,*/*;q=0.8
+Referer: https://mids.nju.edu.cn/_mobile/njulogin/css/login.css
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,en-US;q=0.8
+Cookie: JSESSIONID=3D5C1D7B5E6303D0D4894616CB080607
+X-Requested-With: cn.edu.nju.iportal
+
+HTTP/1.1 304 Not Modified
+Server: Apache-Coyote/1.1
+ETag: W/"5625-1437359368000"
+Date: Mon, 18 Apr 2016 15:00:57 GMT
+

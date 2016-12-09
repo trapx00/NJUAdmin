@@ -1,0 +1,33 @@
+GET /mobile/getCardInfo.mo?_=1481042331444&callback=jsonp1 HTTP/1.1
+Host: mapp.nju.edu.cn
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Linux; Android 7.0; ONEPLUS A3000 Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/54.0.2840.85 Mobile Safari/537.36 iPortal/21.4
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,en-US;q=0.8
+Cookie: iPlanetDirectoryPro=AQIC5wM2LY4SfcxSC8%2B5q%2FQBBhmL2qRMzqa9sw491oOC5%2Fc%3D%40AAJTSQACMDE%3D%23; JSESSIONID=1EB2076AC723111EE188C417177C383E
+X-Requested-With: cn.edu.nju.iportal
+
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Content-Type: text/json;charset=UTF-8
+Content-Length: 80
+Date: Tue, 06 Dec 2016 16:39:14 GMT
+
+jsonp1({"result":"1","reason":"","data":{"name":"陈俊达","balance":122.87}});GET /mobile/getTransList.mo?pageSize=10&page=1&_=1481042331794&callback=jsonp2 HTTP/1.1
+Host: mapp.nju.edu.cn
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Linux; Android 7.0; ONEPLUS A3000 Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/54.0.2840.85 Mobile Safari/537.36 iPortal/21.4
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,en-US;q=0.8
+Cookie: iPlanetDirectoryPro=AQIC5wM2LY4SfcxSC8%2B5q%2FQBBhmL2qRMzqa9sw491oOC5%2Fc%3D%40AAJTSQACMDE%3D%23; JSESSIONID=1EB2076AC723111EE188C417177C383E
+X-Requested-With: cn.edu.nju.iportal
+
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Content-Type: text/json;charset=UTF-8
+Content-Length: 1342
+Date: Tue, 06 Dec 2016 16:39:14 GMT
+
+jsonp2({"result":"1","reason":"","data":{"total":489,"items":[{"transTime":"16-12-06 17:29","transName":"POS消费","amount":"-10.5","balance":122.87,"termName":"仙林教育超市1"},{"transTime":"16-12-06 17:05","transName":"POS消费","amount":"-12.0","balance":133.37,"termName":"仙林六食堂风味1"},{"transTime":"16-12-06 12:25","transName":"POS消费","amount":"-5.7","balance":145.37,"termName":"仙林五食堂西点屋1"},{"transTime":"16-12-06 12:14","transName":"POS消费","amount":"-10.8","balance":151.07,"termName":"仙林五食堂家常菜肴1"},{"transTime":"16-12-05 18:13","transName":"POS消费","amount":"-6.0","balance":161.87,"termName":"仙林四食堂金陵小吃1"},{"transTime":"16-12-05 13:20","transName":"POS消费","amount":"-0.2","balance":167.87,"termName":"仙林雅思园图文广告设计1"},{"transTime":"16-12-05 12:17","transName":"POS消费","amount":"-11.4","balance":168.07,"termName":"仙林五食堂快捷窗口4"},{"transTime":"16-12-04 21:20","transName":"POS消费","amount":"-1.0","balance":179.47,"termName":"仙林1幢浴室42"},{"transTime":"16-12-04 17:55","transName":"POS消费","amount":"-3.5","balance":180.47,"termName":"仙林四食堂煎饼3"},{"transTime":"16-12-04 17:54","transName":"POS消费","amount":"-5.0","balance":183.97,"termName":"仙林四食堂金陵小吃1"}]}});
