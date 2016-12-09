@@ -84,7 +84,16 @@
                             <a href="/pecard"><i class="fa fa-table fa-fw"></i> 体育打卡</a>
                         </li>
                         <li>
-                            <a href="/school_card"><i class="fa fa-edit fa-fw"></i> 校园卡业务</a>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i> 校园卡业务<span class="fa arrow"></span></a>
+
+                            <ul class="nav nav-second-level collapse">
+                                <li>
+                                    <a href="/schoolcard">数据</a>
+                                </li>
+                                <li>
+                                    <a href="/schoolcard/charts">图表</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="communication.html"><i class="fa fa-sitemap fa-fw"></i> 课程交流</a>
@@ -99,11 +108,12 @@
                 </div>
         </nav>
         {% block page_content %} {% endblock %}
-        <div class="wrapper footer">
-            <p>Made in 2016 by Trap x00. Click <a href="https://github.com/viccrubs/NJUAdmin">here</a> for Github Repository.</p>
+        
         </div>
     </div>
-    </div>
+    <div class="wrapper footer">
+            <p class="text-center">Made in 2016 by Trap x00. Click <a href="https://github.com/viccrubs/NJUAdmin">here</a> for Github Repository.</p>
+        </div>
     <script>init();</script>
 
 </body>

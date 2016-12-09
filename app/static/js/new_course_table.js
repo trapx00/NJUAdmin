@@ -57,6 +57,7 @@ function writeTable() {
 function setCurrentWeek() {
     $.get("/api/weeks_info",(data)=>{
         $("#week").val(JSON.parse(data)["currentWeek"]);
+        refresh();
     });
 }
 
@@ -112,3 +113,5 @@ function toggleNoon() {
 function toggleUpdateIndicator(){
     $("#update_indicator").toggle();
 }
+
+setCurrentWeek();

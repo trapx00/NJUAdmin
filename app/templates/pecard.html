@@ -1,16 +1,20 @@
 {% extends "base.html" %} {% block page_content %}
 
 <div id="page-wrapper">
-	<div class="container-fluid">
-		<label class="label label-primary fa fa-calendar fa-3x">打卡次数:</label>
-		<label class="label label-danger huge" id="times">0/30</label>
+	<div class="row">
+		<div class="container-fluid">
+			<label class="label label-primary fa fa-calendar fa-3x">打卡次数:</label>
+			<label class="label label-danger huge" id="times">0/30</label>
 
+		</div>
 	</div>
-	<div>
-		<table id="details">
-		</table>
+	<hr>
+	<div class="row">
+		<div class="container-fluid">
+			<table id="details">
+			</table>
 
+		</div>
 	</div>
 </div>
-<script src="../static/js/pecard_list.js"></script>
-{% endblock %}
+<script src="../static/js/pecard_list.js"></script> {% endblock %}

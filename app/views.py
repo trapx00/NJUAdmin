@@ -9,7 +9,7 @@ urls = {
     "peCard": "http://mapp.nju.edu.cn/mobile/getExerciseInfo.mo", #start and end time needed startDate=2016-08-29&endDate=2017-01-08
     "termDate": "http://mapp.nju.edu.cn/mobile/getTermDateInfo.mo", #included all term date
     "cardInfo": "http://mapp.nju.edu.cn/mobile/getCardInfo.mo",
-    "transInfo":"http://mapp.nju.edu.cn/mobile/getTransList.mo", #pageSize can be provided
+    "transInfo":"http://mapp.nju.edu.cn/mobile/getTransList.mo", #pageSize can be provided and page
     "weeksInfo":"http://mapp.nju.edu.cn/mobile/fetchWeek_qyy.mo", 
     "days":"http://mapp.nju.edu.cn/mobile/fetchDays_qyy.mo?firstDay=", # 2016-12-15 needed 
     "course_table":"http://mapp.nju.edu.cn/mobile/fetchKCB_qyy.mo?firstDay=",
@@ -34,7 +34,8 @@ def pe_card():
 
 @app.route("/api/trans_info")
 def transInfo():
-    return set_cookie().get(urls["transInfo"]).content.decode()
+    size = request.args.get("size")
+    return set_cookie().get(urls["transInfo"],params={"pageSize":size}).content.decode()
 
 @app.route("/api/card_info")
 def cardInfo():
@@ -141,9 +142,13 @@ def register():
         name=request.form["name"]
         student_id=request.form["student_id"]
 
-@app.route("/school_card")
+@app.route("/schoolcard")
 def school_card():
-    return render_template("money.html")
+    return render_template("schoolcard.html")
+
+@app.route("/schoolcard/charts")
+def schoolcard_charts():
+    return render_template("schoolcard_charts.html")
 
 @app.route("/login",methods=["GET","POST"])
 def logins():
@@ -182,6 +187,7 @@ def logins():
         session["logged_cookies"]=requests.utils.dict_from_cookiejar(s.cookies)
 
         resp = make_response(redirect("/"))
-        resp.set_cookie("AMAuthCookie",requests.utils.dict_from_cookiejar(s.cookies)["AMAuthCookie"])
+        if not "iPlanetDirectoryPro" in requests.utils.dict_from_cookiejar(s.cookies):
+            return redirect("/login")
         resp.set_cookie("iPlanetDirectoryPro",requests.utils.dict_from_cookiejar(s.cookies)["iPlanetDirectoryPro"])
         return resp

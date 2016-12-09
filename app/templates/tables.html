@@ -1,5 +1,4 @@
 {% extends "base.html" %} {% block page_content %}
-<script src="../static/js/new_course_table.js"></script>
 <style type="text/css">
 @keyframes spin {
 	100% {
@@ -23,9 +22,6 @@
 		<div class="col-sm-12">
 			<p id="update_indicator" style="display: none"><span id="refresh_icon" class="glyphicon glyphicon-refresh"></span>正在更新....</p>
 			<div class="input-group">
-				<span class="input-group-btn">
-					<button type="button" class="btn btn-warning" onclick="refresh()">刷新</button>
-				</span>
 				<span class="input-group-btn">
 					<button type="button" class="btn btn-default" onclick="changeWeek(-1)">-1</button>
 				</span>
@@ -200,7 +196,7 @@
 			</div>
 		</div>
 	</div>
-<script>
-	setCurrentWeek();
-</script>
+	<script src="../static/js/new_course_table.js"></script>
+	<script>
+	</script>
 	{% endblock %}
