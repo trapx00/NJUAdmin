@@ -62,7 +62,7 @@ def course_table():
         "courses": courses,
     },ensure_ascii=False)
 
-@app.route("/api/login",method=["GET","POST"])
+@app.route("/api/login",methods=["GET","POST"])
 def api_login():
     login_url="http://cer.nju.edu.cn/amserver/UI/Login"
     filename="api" + str(datetime.datetime.now().timestamp())
@@ -150,7 +150,7 @@ def logins():
     login_url="http://cer.nju.edu.cn/amserver/UI/Login"
     filename=datetime.datetime.now().timestamp()
     captcha_path = os.path.join(os.path.dirname(__file__), "static/temp/{0}.jpg".format(filename))
-    if os.path.exists(session["captcha_path"]):
+    if session.get("captcha_path") and os.path.exists(session.get("captcha_path")):
         os.remove(session["captcha_path"])
     if request.method=="GET":
         s=requests.session()
