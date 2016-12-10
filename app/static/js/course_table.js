@@ -24,7 +24,7 @@ function clearTable() {
 }
 
 function changeWeek(offset) {
-    let current_week = parseInt($("#week").val());
+    var current_week = parseInt($("#week").val());
     if ((current_week <= 0 && offset < 0) || (current_week >= 20 && offset > 0))
         alert("周数不对了吧");
     else {
@@ -45,11 +45,11 @@ function writeTable() {
         var course = JSON.parse(json_course);
         course["course_time_location"].forEach(function (time_location) {
             if (!time_location || !time_location["weeks"].includes(week)) return;
-            for (let i = parseInt(time_location["start_time"]); i <= parseInt(time_location["end_time"]); i++) {
-                let selector = "#course_table tr:eq({0}) td:eq({1})".format(i, time_location["weekday"]);
+            for (var i = parseInt(time_location["start_time"]); i <= parseInt(time_location["end_time"]); i++) {
+                var selector = "#course_table tr:eq({0}) td:eq({1})".format(i, time_location["weekday"]);
                 $(selector).text(course["name"]);
-                let building = time_location["location"].split("-")[0];
-                let color = "#FFFFFF";
+                var building = time_location["location"].split("-")[0];
+                var color = "#FFFFFF";
                 if (building in colors) color = colors[building];
                 $(selector).attr("bgcolor",color);
                 $(selector).attr("onclick",'displayModal("{0}","{1}","{2}");'.format(course["name"], course["teachers"], time_location["location"]));
@@ -62,10 +62,10 @@ function writeTable() {
 }
 
 function setCurrentWeek() {
-    let current_day = new Date();
-    let start_day = Date.parse("Aug 28, 2016");
+    var current_day = new Date();
+    var start_day = Date.parse("Aug 28, 2016");
 
-    let weeks = Math.ceil((current_day - start_day) / (24 * 3600 * 1000 * 7))
+    var weeks = Math.ceil((current_day - start_day) / (24 * 3600 * 1000 * 7))
     $("#week").val(weeks);
 }
 

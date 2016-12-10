@@ -20,9 +20,9 @@ function checkLogIn() {
 
 function updateHeaderInfo() {
     if (Cookies.get("iPlanetDirectoryPro")) {
-        let weeksInfo = window.localStorage["weeksInfo"];
+        var weeksInfo = window.localStorage["weeksInfo"];
         if (weeksInfo) {
-            let currentWeek = weeksInfo.split("/")[0],
+            var currentWeek = weeksInfo.split("/")[0],
                 totalWeek = weeksInfo.split("/")[1];
             $("#date").text("这是第" + currentWeek + "/" + totalWeek + "周");
         }

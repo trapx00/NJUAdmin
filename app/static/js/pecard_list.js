@@ -1,15 +1,15 @@
 function updatePEInfo() {
     $.get("/api/pe_card", function (data) {
-        let counter = 1;
-        let parsedData = JSON.parse(data)["data"];
+        var counter = 1;
+        var parsedData = JSON.parse(data)["data"];
         $("#pe_time").text(parsedData["msg"] + "/30");
-        let newData = [];
+        var newData = [];
         parsedData["data"].forEach(function (record) {
-            let time = record["transtime"];
-            let date = record["transdate"];
-            let device = record["devicename"];
-            let period = record["period"];
-            let formatedRecord = {};
+            var time = record["transtime"];
+            var date = record["transdate"];
+            var device = record["devicename"];
+            var period = record["period"];
+            var formatedRecord = {};
             formatedRecord.id = counter;
             counter++;
             formatedRecord.time = formatString(date, time);
@@ -29,13 +29,13 @@ function updatePEInfo() {
 }
 
 function formatString(date, time) {
-    let year = date.substring(0, 4);
-    let month = date.substring(4, 6);
-    let day = date.substring(6, 8);
-    let hour = time.substring(0, 2);
-    let minute = time.substring(2, 4);
-    let second = time.substring(4, 6);
-    let datetime = "{0}年{1}月{2}日 {3}:{4}:{5}".format(year, month, day, hour, minute, second);
+    var year = date.substring(0, 4);
+    var month = date.substring(4, 6);
+    var day = date.substring(6, 8);
+    var hour = time.substring(0, 2);
+    var minute = time.substring(2, 4);
+    var second = time.substring(4, 6);
+    var datetime = "{0}年{1}月{2}日 {3}:{4}:{5}".format(year, month, day, hour, minute, second);
     return datetime;
 }
 

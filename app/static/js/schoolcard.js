@@ -3,8 +3,8 @@ function updateTransInfo(){
         $("#balance").text(JSON.parse(data)["data"]["balance"]);
     });
     $.get("/api/trans_info",$("#data_amount").val(),function(data){
-        let counter = 1;
-        let parsedData=JSON.parse(data)["data"];
+        var counter = 1;
+        var parsedData=JSON.parse(data)["data"];
         $("#detailed").DataTable({
             data:parsedData["items"],
             columns:[
@@ -20,7 +20,7 @@ function updateTransInfo(){
 
 function changeTheNumberOfItems(amount){
     $.get("/api/trans_info",{"size": amount},function(data){
-        let parsedData=JSON.parse(data)["data"];
+        var parsedData=JSON.parse(data)["data"];
         $('#detailed').dataTable().fnClearTable();
         $('#detailed').dataTable().fnAddData(parsedData["items"]);
     });

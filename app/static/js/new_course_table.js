@@ -15,7 +15,7 @@ function clearTable() {
 }
 
 function changeWeek(offset) {
-    let current_week = parseInt($("#week").val());
+    var current_week = parseInt($("#week").val());
     if ((current_week <= 0 && offset < 0) || (current_week >= 20 && offset > 0))
         alert("周数不对了吧");
     else {
@@ -37,12 +37,12 @@ function writeTable() {
 
     data.forEach(function (planList){
         planList["planList"].forEach(function (course){
-            for (let i = 0;i<parseInt(course["length"]);i++){
-                let current_time = parseInt(course["begin"])+i;
-                let selector = "#course_table tr:eq({0}) td:eq({1})".format(current_time,course["xqj"]);
+            for (var i = 0;i<parseInt(course["length"]);i++){
+                var current_time = parseInt(course["begin"])+i;
+                var selector = "#course_table tr:eq({0}) td:eq({1})".format(current_time,course["xqj"]);
                 $(selector).text(course["courseName"]);
-                let building = course["roomName"].split("-")[0];
-                let color = "#FFFFFF";
+                var building = course["roomName"].split("-")[0];
+                var color = "#FFFFFF";
                 if (building in colors) color = colors[building];
                 $(selector).attr("bgcolor",color);
                 $(selector).attr("onclick",'displayModal("{0}","{1}","{2}");'.format(course["courseName"], course["teacherName"], course["roomName"]));
