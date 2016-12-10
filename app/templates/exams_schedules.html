@@ -1,0 +1,72 @@
+{% extends "base.html" %} {% block page_content %}
+<script src="../static/vendor/moment.js/moment.js"></script>
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-clock-o fa-fw"></i> 时间轴
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <ul class="timeline">
+
+                    </ul>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div id="login_panel" class="panel-heading">登录教务网</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="container-fluid">
+                            <div class="alert alert-warning">
+                                <b>您已经登录！</b>
+                                <a onclick="eduadminLogout()" class="btn btn-danger">点这里退出登录</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="display:none">
+                        <div class="alert alert-danger">
+                            <b>登录失败！</b>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="container-fluid">
+                            <p>Q：为什么还要登录一次？</p>
+                            <p>A：因为学校的App没有考试安排，只能去登录教务网获取。</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form id="login_form">
+                                <div class="form-group">
+                                    <input type="text" id="username" name="username" class="form-control" placeholder="用户名" />
+                                    <input type="password" id="password" name="password" class="form-control" placeholder="密码" />
+                                </div>
+                            </form>
+                            <div class="form-group">
+                                <button class="btn btn-primary" onclick="loginEduAdmin()">OK</button>
+                                <button class="btn btn-primary" onclick="window.location.reload()">清除</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<li id="timeline-template" style="display: none">
+    <div class="timeline-badge"><i class="fa fa-check"></i>
+    </div>
+    <div class="timeline-panel">
+        <div class="timeline-heading">
+            <h4 class="timeline-title"></h4>
+            <p><small class="text-muted"><i class="fa fa-clock-o"></i></small>
+            </p>
+        </div>
+    </div>
+</li>
+<script src="../static/js/exams_schedules.js"></script> {% endblock %}

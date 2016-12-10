@@ -3,8 +3,6 @@ from bs4 import BeautifulSoup
 import json, requests, os, http.cookiejar, datetime
 from flask import render_template,request, url_for, g, session, redirect, make_response, send_file
 
-
-l=lambda : login.login("161250010","162642")
 urls = {
     "peCard": "http://mapp.nju.edu.cn/mobile/getExerciseInfo.mo", #start and end time needed startDate=2016-08-29&endDate=2017-01-08
     "termDate": "http://mapp.nju.edu.cn/mobile/getTermDateInfo.mo", #included all term date
@@ -46,7 +44,7 @@ def week_info():
     return set_cookie().get(urls["weeksInfo"]).content.decode()
 
 @app.route("/api/course_table")
-def course_table():
+def api_course_table():
     week = request.args.get("week")
     if not week:
         return json.dumps({
@@ -103,6 +101,17 @@ def api_login():
             "iPlanetDirectoryPro":requests.utils.dict_from_cookiejar(s.cookies)["iPlanetDirectoryPro"]
         })
 
+@app.route("/api/exam_schedules",methods=["POST"])
+def api_exam_schedules():
+    username = request.form.get("username")
+    password=request.form.get("password")
+    if not username or not password:
+        return json.dumps({
+            "status":"error",
+            "description":"not logged in"
+        })
+    return json.dumps(course_table.get_exams_schedules(username,password),ensure_ascii=False)
+
 @app.route("/pecard")
 def pecard():
     return render_template("pecard.html")
@@ -115,24 +124,11 @@ def websites():
 def home():
     return render_template("index.html")
 
-@app.route("/course_table",methods=["GET","POST"])
-def course():
-    if request.method=="POST":
-        # username=request.form["username"]
-        # password=request.form["password"]
-        session=l()
-        response=session.get(login.urls["course_table"])
-        content=BeautifulSoup(response.content.decode("utf-8"))
-        t=content.table.find("tr",align="left").table
-        #return t.prettify()
-        #return t.find_all("tr")[1].get_text()
-        list_of_course=[]
-        courses=t.find_all("tr")
-        for i in range(1,len(courses)-1):
-            list_of_course.append(course_table.Course.parse(courses[i].prettify()).toJSON())
-        return json.dumps(list_of_course,ensure_ascii=False)
-    else:
-        return render_template("tables.html")
+@app.route("/communication")
+def communication():
+    return render_template("plugins.html")
+
+
     
 @app.route("/register",methods=["GET","POST"])
 def register():
@@ -142,13 +138,43 @@ def register():
         name=request.form["name"]
         student_id=request.form["student_id"]
 
-@app.route("/schoolcard")
+@app.route("/plugins",methods=["GET","POST"])
+def plugins():
+    return render_template("plugins.html")
+
+@app.route("/schoolcard/data")
 def school_card():
     return render_template("schoolcard.html")
 
 @app.route("/schoolcard/charts")
 def schoolcard_charts():
     return render_template("schoolcard_charts.html")
+
+@app.route("/exams/schedules",methods=["GET"])
+def exams_schedules():
+    return render_template("exams_schedules.html")
+    
+@app.route("/api/login_eduadmin",methods=["POST"])
+def login_eduadmin():
+    username = request.form["username"]
+    password = request.form["password"]
+    s= login.login_eduadmin(username,password)
+    cookie = requests.utils.dict_from_cookiejar(s.cookies).get("user_id")
+    if cookie:
+        return json.dumps({
+            "status":"success",
+        })
+    else:
+        return json.dumps({
+            "status":"error",
+        })
+@app.route("/course_table")
+def new_course_table():
+    return render_template("tables.html")
+
+@app.route("/exams/grades")
+def exams_grades():
+    return render_template("exams_grades.html")
 
 @app.route("/login",methods=["GET","POST"])
 def logins():

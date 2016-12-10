@@ -1,20 +1,60 @@
-{% extends "base.html" %}
-{% block page_content %}
-
-	<div id="page-wrapper">
-		<div class="row">
-			<div class="container-fluid">
-            <label class="label label-primary fa fa-calendar fa-3x">卡内余额:</label>
-			<label class="label label-danger huge" id="balance">29</label>       
-		</div>   
-		</div>
-		<hr>
-		<div class="row">
-			<div class="container-fluid">
-			<table id="detailed">
-		</table>
-		</div>
+{% extends "base.html" %} {% block page_content %}
+<script src="../static/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<link href="../static/vendor/datatables/css/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="../static/vendor/datatables/js/dataTables.bootstrap.js"></script>
+<link href="../static/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet" />
+<script src="../static/vendor/datatables-responsive/dataTables.responsive.js" ></script> 
+<div id="page-wrapper">
+	<div class="row">
+			<div class="col-lg-3 col-md-6">
+				<div class="panel panel-red">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-3">
+								<i class="fa fa-exclamation-circle fa-5x"></i>
+							</div>
+							<div class="col-xs-9 text-right">
+								<div class="huge" id="balance"></div>
+								<div>校园卡余额</div>
+							</div>
+						</div>
+					</div>
+				</div>
 		</div>
 	</div>
-	<script src="../static/js/school_card.js"></script>
-{% endblock %}
+	<hr>
+	<div class="row">
+		<div class="container-fluid">
+			<p>数据量</p>
+			<select id="data_amount" class="form-control input-sm">
+                        <option value="10" selected="selected">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                        <option value="60">60</option>
+                        <option value="70">70</option>
+						<option value="-1">自定义</option>
+            </select>
+
+		</div>
+	</div>
+	<div class="row" id="customize" style="display: none">
+		<div class="container-fluid">
+			<input class="form-control" type="text" id="amount" placeholder="输入条数" />
+			<a class="btn btn-primary" id="submit">好的</a>
+		</div>
+	</div>
+	<hr>
+	<table id="detailed" class="table table-bordered responsive">
+		<thead>
+			<tr>
+				<th>时间</th>
+				<th>地点</th>
+				<th>金额</th>
+				<th>余额</th>
+			</tr>
+		</thead>
+	</table>
+</div>
+<script src="../static/js/schoolcard.js"></script>{% endblock %}

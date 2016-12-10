@@ -18,8 +18,6 @@
 
     <!-- Custom CSS -->
     <link href="../static/vendor/sb-admin-2/sb-admin-2.min.css" rel="stylesheet">
-
-    <link href="../static/vendor/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -34,9 +32,9 @@
     <script src="../static/js/common.js"></script>
     <script src="../static/js/urls.js"></script>
     <script src="../static/js/js.cookie.js"></script>
+    <!--<link href="../static/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet" />-->
 
-    <script src="../static/vendor/bootstrap-table/bootstrap-table.js"></script>
-    <script src="../static/vendor/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+
 
 </head>
 
@@ -59,11 +57,6 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-users">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> 用户信息</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> 设置</a>
-                        </li>
-                        <li class="divider"></li>
                         <li><a onclick="logOut()"><i class="fa fa-sign-out fa-fw"></i> 登出</a>
                         </li>
                     </ul>
@@ -81,14 +74,14 @@
                             <a href="/course_table"><i class="fa fa-table fa-fw"></i> 课程表</a>
                         </li>
                         <li>
-                            <a href="/pecard"><i class="fa fa-table fa-fw"></i> 体育打卡</a>
+                            <a href="/pecard"><i class="fa fa-pencil fa-fw"></i> 体育打卡</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-edit fa-fw"></i> 校园卡业务<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i> 校园卡数据<span class="fa arrow"></span></a>
 
                             <ul class="nav nav-second-level collapse">
                                 <li>
-                                    <a href="/schoolcard">数据</a>
+                                    <a href="/schoolcard/data">数据</a>
                                 </li>
                                 <li>
                                     <a href="/schoolcard/charts">图表</a>
@@ -96,10 +89,22 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="communication.html"><i class="fa fa-sitemap fa-fw"></i> 课程交流</a>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i> 考试相关<span class="fa arrow"></span></a>
+
+                            <ul class="nav nav-second-level collapse">
+                                <li>
+                                    <a href="/exams/schedules">考试安排</a>
+                                </li>
+                                <li>
+                                    <a href="/exams/grades">考试成绩</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
-                            <a href="elements.html"><i class="fa fa-wrench fa-fw"></i> 开源插件</a>
+                            <a href="/communication"><i class="fa fa-sitemap fa-fw"></i> 课程交流</a>
+                        </li>
+                        <li>
+                            <a href="/plugins"><i class="fa fa-wrench fa-fw"></i> 开源插件</a>
                         </li>
                         <li>
                             <a href="/websites"><i class="fa fa-question fa-fw"></i> 常用网站</a>
@@ -108,12 +113,11 @@
                 </div>
         </nav>
         {% block page_content %} {% endblock %}
-        
-        </div>
-    </div>
-    <div class="wrapper footer">
+
+        <div class="wrapper footer">
+            <hr>
             <p class="text-center">Made in 2016 by Trap x00. Click <a href="https://github.com/viccrubs/NJUAdmin">here</a> for Github Repository.</p>
         </div>
-    <script>init();</script>
+        <script>init();</script>
 
 </body>

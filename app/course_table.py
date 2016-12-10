@@ -1,6 +1,7 @@
 from enum import Enum
 from bs4 import BeautifulSoup
-import json,re,jsonpickle
+from app import login
+import json,re,jsonpickle,requests
 import simplejson as json
 #周五 第3-4节 4-17周 仙Ⅱ-304
 #周五 第7-8节 从第5周开始:单周 仙Ⅱ-207
@@ -113,5 +114,17 @@ class Course():
         jsonpickle.set_encoder_options('simplejson', ensure_ascii=False)
         return jsonpickle.encode(self)
 
-
-        
+def get_exams_schedules(username,password):
+    s= login.login_eduadmin(username,password)
+    response=s.get(login.urls["course_table"])
+    content=BeautifulSoup(response.content.decode("utf-8"))
+    t=content.table.find("tr",align="left").table
+    dict_of_time = []
+    courses=t.find_all("tr")
+    for i in range(1,len(courses)-1):
+        course = Course.parse(courses[i].prettify())
+        dict_of_time.append({
+            "course":course.name,
+            "exam_time":course.exam_time, 
+        })
+    return dict_of_time

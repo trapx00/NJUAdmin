@@ -24,6 +24,7 @@ function changeWeek(offset) {
 }
 
 function writeTable() {
+    clearTable();
     toggleNoon();
     clearTable();
     var week = parseInt($("#week").val());
@@ -55,16 +56,13 @@ function writeTable() {
 }
 
 function setCurrentWeek() {
-    $.get("/api/weeks_info",(data)=>{
-        $("#week").val(JSON.parse(data)["currentWeek"]);
-        refresh();
-    });
+     $("#week").val(window.localStorage["weeksInfo"].split('/')[0]);
+     refresh();
 }
 
 function refresh() {
     toggleUpdateIndicator();
     window.localStorage['course_table'] = '';
-    clearTable();
     requireCourseTable();
 
 }

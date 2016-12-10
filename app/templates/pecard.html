@@ -1,17 +1,38 @@
 {% extends "base.html" %} {% block page_content %}
-
+<script src="../static/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<link href="../static/vendor/datatables/css/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="../static/vendor/datatables/js/dataTables.bootstrap.js"></script>
+<link href="../static/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet" />
+<script src="../static/vendor/datatables-responsive/dataTables.responsive.js" ></script> 
 <div id="page-wrapper">
 	<div class="row">
-		<div class="container-fluid">
-			<label class="label label-primary fa fa-calendar fa-3x">打卡次数:</label>
-			<label class="label label-danger huge" id="times">0/30</label>
-
+		<div class="col-lg-3 col-md-6 text-center">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-xs-3">
+							<i class="fa fa-tasks fa-5x"></i>
+						</div>
+						<div class="col-xs-9 text-right">
+							<div class="huge" id="pe_time"></div>
+							<div>打卡次数</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<hr>
 	<div class="row">
 		<div class="container-fluid">
-			<table id="details">
+			<table id="detailed" class="table table-bordered responsive">
+				<thead>
+					<tr>
+						<th>序号</th>
+						<th>时间</th>
+						<th>机器</th>
+					</tr>
+				</thead>
 			</table>
 
 		</div>

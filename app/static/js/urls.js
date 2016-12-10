@@ -6,6 +6,9 @@ var urls = {
     "weeksInfo":"http://mapp.nju.edu.cn/mobile/fetchWeek_qyy.mo", 
     "days":"http://mapp.nju.edu.cn/mobile/fetchDays_qyy.mo?firstDay=", // 2016-12-15 added 
     "course_table":"http://mapp.nju.edu.cn/mobile/fetchKCB_qyy.mo?firstDay=",
+    "login_jw": "http://jw.nju.edu.cn:8080/jiaowu/login.do",
+    "course_table_jw": "http://jw.nju.edu.cn:8080/jiaowu/student/teachinginfo/courseList.do?method=currentTermCourse",
+
 };
 
 
