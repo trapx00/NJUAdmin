@@ -2,11 +2,21 @@ function updateCharts() {
     $.get("/api/trans_info", { "size": $("#data_amount").val() }, function (data) {
         var parsedData = JSON.parse(data)["data"];
         var chartsData = [];
+        var expenses =0.0, income=0.0;
+        console.log(parsedData);
         parsedData["items"].forEach(function (record) {
             var timestamp = parseToTimeStamp(record["transTime"]);
+            if (parseFloat(record["amount"])<0)
+                expenses-=parseFloat(record["amount"]);
+            else
+                income+=parseFloat(record["amount"]);
             var oneRecord = [parseInt(timestamp), parseFloat(record["balance"])];
             chartsData.push(oneRecord);
         });
+        
+        $("#expenses").text(expenses.toFixed(2));
+        $("#income").text(income.toFixed(2));
+
         window.localStorage["parsedData"] = JSON.stringify(parsedData);
         // for (var i = 0; i < 30; i += 0.5){ chartsData.push([i, Math.sin(i)]); } 
         if (window.plot) {

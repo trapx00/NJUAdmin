@@ -5,8 +5,8 @@ function loginEduAdmin() {
             $(".col-lg-6:eq(1) .row:eq(1)").show();
         }
         if (parsedData["status"] === "success") {
-            Cookies.set("username", $("#username").val());
-            Cookies.set("password", $("#password").val());
+            Cookies.set("username", btoa($("#username").val()));
+            Cookies.set("password", btoa($("#password").val()));
             window.location.reload();
         }
     });
@@ -15,8 +15,8 @@ function loginEduAdmin() {
 function getSchedules() {
     var formData = new FormData();
     var invert = false;
-    formData.append("username", Cookies.get("username"));
-    formData.append("password", Cookies.get("password"));
+    formData.append("username", atob(Cookies.get("username")));
+    formData.append("password", atob(Cookies.get("password")));
     $.ajax({
         url: "/api/exam_schedules",
         data: formData,
@@ -43,7 +43,6 @@ function getSchedules() {
                 //step 2
                 var timeA = A.split(' ')[1];
                 var timeB = B.split(' ')[1];
-
 
                 if (timeA && timeB) {
                     var paddle
