@@ -5,7 +5,6 @@ function updatePEInfo() {
         $("#pe_time").text(parsedData["msg"] + "/30");
         let newData = [];
         parsedData["data"].forEach(function (record) {
-            console.log(record);
             let time = record["transtime"];
             let date = record["transdate"];
             let device = record["devicename"];
@@ -17,7 +16,6 @@ function updatePEInfo() {
             formatedRecord.device = device;
             newData.push(formatedRecord);
         });
-        console.log(newData);
         $("#detailed").DataTable({
             data: newData,
             columns: [

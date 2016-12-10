@@ -5,7 +5,6 @@ function loginEduAdmin() {
             $(".col-lg-6:eq(1) .row:eq(1)").show();
         }
         if (parsedData["status"] === "success") {
-            console.log("233");
             Cookies.set("username", $("#username").val());
             Cookies.set("password", $("#password").val());
             window.location.reload();

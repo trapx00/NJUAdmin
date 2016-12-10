@@ -7,8 +7,6 @@ function updateCharts() {
             let oneRecord = [parseInt(timestamp), parseFloat(record["balance"])];
             chartsData.push(oneRecord);
         });
-        console.log(parsedData);
-        console.log(chartsData);
         window.localStorage["parsedData"] = JSON.stringify(parsedData);
         // for (var i = 0; i < 30; i += 0.5){ chartsData.push([i, Math.sin(i)]); } 
         if (window.plot) {

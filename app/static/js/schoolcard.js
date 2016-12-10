@@ -5,7 +5,6 @@ function updateTransInfo(){
     $.get("/api/trans_info",$("#data_amount").val(),function(data){
         let counter = 1;
         let parsedData=JSON.parse(data)["data"];
-        console.log(parsedData["items"]);
         $("#detailed").DataTable({
             data:parsedData["items"],
             columns:[

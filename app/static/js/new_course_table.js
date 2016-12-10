@@ -34,7 +34,6 @@ function writeTable() {
         requireCourseTable();
     }
     data = JSON.parse(JSON.parse(data)["courses"])["data"];
-    console.log(data);
 
     data.forEach(function (planList){
         planList["planList"].forEach(function (course){
@@ -70,7 +69,6 @@ function refresh() {
 function requireCourseTable() {
     var url = "/api/course_table";
     var week = $("#week").val();
-    console.log(week);
     $.get(url, {"week":week}, (data) => {
         window.localStorage["course_table"] = data;
         writeTable();
