@@ -1,13 +1,14 @@
 {% extends "base.html" %} {% block page_content %}
 <style type="text/css">
-@keyframes spin {
-	100% {
-		transform : rotate(360deg);
+	@keyframes spin {
+		100% {
+			transform: rotate(360deg);
+		}
 	}
-}
-#refresh_icon {
-	animation: spin 4s linear infinite;
-}
+	
+	#refresh_icon {
+		animation: spin 4s linear infinite;
+	}
 </style>
 <div id="page-wrapper">
 	<div class="row">
@@ -25,7 +26,7 @@
 				<span class="input-group-btn">
 					<button type="button" class="btn btn-default" onclick="changeWeek(-1)">-1</button>
 				</span>
-				<input class="form-control text-center" type="text" readonly="readonly" placeholder="周数" id="week"/>
+				<input class="form-control text-center" type="text" readonly="readonly" placeholder="周数" id="week" />
 				<span class="input-group-btn">
 					<button type="button" class="btn btn-default" onclick="changeWeek(1)">+1</button>
 				</span>
@@ -96,10 +97,10 @@
 						<td class=""></td>
 					</tr>
 					<tr class="gradeA even" role="row" id="noon">
-								<td colspan="8">
-									<p class="text-center">午休(12:00~2:00) 睡觉去！</p>
-								</td>
-							</tr>
+						<td colspan="8">
+							<p class="text-center">午休(12:00~2:00) 睡觉去！</p>
+						</td>
+					</tr>
 					</tr>
 					<tr class="gradeA odd" role="row">
 						<td class="">5(2:00~2:50)</td>
@@ -197,6 +198,4 @@
 		</div>
 	</div>
 	<script src="../static/js/new_course_table.js"></script>
-	<script>
-	</script>
-	{% endblock %}
+</div> {% endblock %}

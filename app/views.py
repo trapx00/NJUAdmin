@@ -15,7 +15,7 @@ urls = {
 
 def set_cookie():
     s=requests.session()
-    if not request.cookies["iPlanetDirectoryPro"]:
+    if not "iPlanetDirectoryPro" in request.cookies:
         return json.dumps({
             "status":"not logged in", 
         })
@@ -126,9 +126,7 @@ def home():
 
 @app.route("/communication")
 def communication():
-    return render_template("plugins.html")
-
-
+    return render_template("communication.html")
     
 @app.route("/register",methods=["GET","POST"])
 def register():

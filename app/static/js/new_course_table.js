@@ -69,7 +69,7 @@ function refresh() {
 function requireCourseTable() {
     var url = "/api/course_table";
     var week = $("#week").val();
-    $.get(url, {"week":week}, (data) => {
+    $.get(url, {"week":week}, function(data){
         window.localStorage["course_table"] = data;
         writeTable();
     }); //data is a form
