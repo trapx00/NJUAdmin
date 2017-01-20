@@ -35,7 +35,7 @@ function updateGradesInfo() {
                 searching: false,
             });
             parsedData.forEach(function (course) {
-                if (course.type != "选修" || course.name.includes("英语")) {
+                if (course.type != "选修" || course.chn_name.includes("英语")) {
                     totalScore1 += parseInt(course.score);
                     totalMark1 += parseInt(course.mark) * parseInt(course.score);
                 }
