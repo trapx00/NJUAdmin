@@ -234,3 +234,7 @@ def logins():
             return redirect("/login")
         resp.set_cookie("iPlanetDirectoryPro",requests.utils.dict_from_cookiejar(s.cookies)["iPlanetDirectoryPro"])
         return resp
+
+@app.route("/about")
+def about():
+    return render_template("about.html")

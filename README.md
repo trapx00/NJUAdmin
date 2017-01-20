@@ -1,5 +1,55 @@
-# Enhanced NJU Education Admin System
+# 关于NJUAdmin
 
-This project aims to gather all the important information of a NJU student and present them with prettier interface.
+## 为什么我们要做这个？
 
-And this project will be rewritten for a better front-end look and efficiency.
+南大自己的App却不能查考试时间、不能选课、查个考试成绩？
+你不认为那个App有点过时吗？
+每次查这些数据，难道还要必须要打开手机，点击南大App图标，等待进入，点应用，下滑，找到自己想要的应用，打开，等待？
+为什么我们的所有数据不能在同一个地方就能获取？
+为什么我们必须用超级课程表这种流氓App来获取课程信息？
+...
+南大App或者教务网能查成绩，却不能算GPA；能查到校园卡消费，却不能把它用更优雅的方式展示出来...
+这个大数据时代，这么重要的信息却这么零散？
+所以，我们要做NJUAdmin。
+
+## 我们的目标是什么
+
+*  对普通同学，
+1. 提供Web和App端应用，让你能在任何时间用任何方式查找到自己想要的信息
+2. 提供尽可能更多的信息和服务甚至建议，让你不再需要各种App和网站来回跳转浪费时间
+3. 信息展示更加现代化、更加友好，而不像官方App和教务网一样古老
+3. 干净，承诺不集成广告
+*  对想自己搞事的同学，
+1. 完全开源
+2. 提供精心设计的API让你能更优雅地利用好这些数据
+3. 提供自定义功能
+
+## 我们做到了什么
+课程表
+打卡记录
+消费记录图表展现
+DDL管理系统
+常用网站及登录账号密码
+查询成绩以及自动计算GPA
+获取考试安排
+
+## 这个版本还有什么问题？
+1. 太丑
+2. 代码太乱，继续开发和维护困难重重，
+3. 功能太少
+4. 有的功能已经无法使用
+
+## 我们接下来要做什么？
+1. 用更现代化的技术（预计前端React+Redux，后端ASP.NET Core或者Python）完全重写
+2. 代码更加正规，可读性、可维护性、可扩展性更强
+
+**对，上面就是我们下次大更新会很慢的原因。**
+
+##Github地址
+Trap x00  [Github](https://github.com/trapx00)
+NJUAdmin [项目Github Repository](https://github.com/trapx00/NJUAdmin)
+
+
+
+
+
