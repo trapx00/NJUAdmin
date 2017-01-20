@@ -62,12 +62,18 @@ function updateTermsList() {
         success: function (data) {
             console.log(data);
             var parsedData = JSON.parse(data);
+            var greatestValue =0;
             parsedData.forEach(function (term) {
                 var year = term.substring(0, 4);
                 var termNo = term[4];
                 var disp = "{0}-{1}年第{2}学期".format(year, parseInt(year) + 1, termNo);
                 $("#termsList").append("<option value='{0}'>{1}</option>".format(term, disp));
+                if (greatestValue < parseInt(term)){
+                    greatestValue = parseInt(term);
+                }
             });
+            $("option[value='{0}']".format(greatestValue)).attr("selected","selected");
+            updateGradesInfo();
         }
     });
 }
