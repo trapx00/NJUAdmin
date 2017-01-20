@@ -1,5 +1,6 @@
 function logOut() {
     Cookies.remove("iPlanetDirectoryPro");
+    window.localStorage.clear();
     window.location.href = "/";
 }
 
