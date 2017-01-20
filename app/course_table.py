@@ -128,3 +128,30 @@ def get_exams_schedules(username,password):
             "exam_time":course.exam_time, 
         })
     return dict_of_time
+
+def get_valid_terms(username,password):
+    s= login.login_eduadmin(username,password)
+    response=s.get(login.urls["grades"])
+    content=BeautifulSoup(response.content.decode("utf-8"))
+    result=[]
+    for item in content.table.find("table").find("tr",align="center").find_all("td"):
+        result.append(item.a["href"][-5:])
+    return result
+
+
+def get_grades(username,password,term):
+    s=login.login_eduadmin(username,password)
+    response=s.get(login.urls["grades"]+"&termCode={0}".format(term))
+    content=BeautifulSoup(response.content.decode("utf-8"))
+    result=[]
+    for item in content.find_all("table")[-1].find_all("tr")[1:]:
+        tds=item.find_all("td")
+        course={}
+        course["id"]=tds[1].a.u.text.strip()
+        course["chn_name"]=tds[2].text.strip()
+        course["eng_name"]=tds[3].text.strip()
+        course["type"]=tds[4].text.strip()
+        course["score"]=tds[5].text.strip()
+        course["mark"]=tds[6].ul.text.strip()
+        result.append(course)
+    return result

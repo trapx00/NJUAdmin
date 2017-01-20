@@ -1,9 +1,78 @@
-{% extends "base.html" %}
-{% block page_content %}
+{% extends "base.html" %} {% block page_content %}
+<script src="http://cdn.bootcss.com/datatables/1.10.13/js/jquery.dataTables.min.js"></script>
+<link href="http://cdn.bootcss.com/datatables/1.10.13/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<script src="http://cdn.bootcss.com/datatables/1.10.13/js/dataTables.bootstrap.min.js"></script>
+<link href="../static/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet" />
+<script src="../static/vendor/datatables-responsive/dataTables.responsive.js"></script>
 <div id="page-wrapper">
-    <h4>还没做好</h4>
-    <hr>
-    <p>原因：由于开发者还是大一的，并没有成绩，做了也测试不了。</p>
-    <small>真实原因：开发者懒。</small>
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-clock-o fa-fw"></i>成绩单
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <select id="termsList" class="form-control input-sm">
+                        <option value="0" selected="selected">选择一个学期</option>
+                    </select>
+                <table id="grades" class="table table-bordered responsive">
+                    <thead>
+                        <tr>
+                            <th>课程名字</th>
+                            <th>课程类别</th>
+                            <th>学分</th>
+                            <th>成绩</th>
+                        </tr>
+                    </thead>
+                </table>
+                <p>GPA（不含选修课）：<b id="gpa1"></b></p>
+                <p>GPA（含选修课）：<b id="gpa2"></b></p>
+            </div>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div id="login_panel" class="panel-heading">登录教务网</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="container-fluid">
+                        <div class="alert alert-warning">
+                            <b>您已经登录！</b>
+                            <a onclick="eduadminLogout()" class="btn btn-danger">点这里退出登录</a>
 </div>
+</div>
+</div>
+<div class="row" style="display:none">
+<div class="alert alert-danger">
+    <b>登录失败！</b>
+</div>
+</div>
+<div class="row">
+    <div class="container-fluid">
+        <p>Q：为什么还要登录一次？</p>
+        <p>A：因为学校的App没有考试安排，只能去登录教务网获取。</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <form id="login_form">
+            <div class="form-group">
+                <input type="text" id="username" name="username" class="form-control" placeholder="用户名" />
+                <input type="password" id="password" name="password" class="form-control" placeholder="密码" />
+            </div>
+        </form>
+        <div class="form-group">
+            <button class="btn btn-primary" onclick="loginEduAdmin()">OK</button>
+<button class="btn btn-primary" onclick="window.location.reload()">清除</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script src="../static/js/exams_grades.js"></script>
 {% endblock %}

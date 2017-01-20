@@ -2,7 +2,9 @@ function updatePEInfo() {
     $.get("/api/pe_card", function (data) {
         var counter = 1;
         var parsedData = JSON.parse(data)["data"];
-        $("#pe_time").text(parsedData["msg"] + "/30");
+        var data=parsedData["msg"];
+        $("#pe_time").text(data.includes("未查询到") ? "Failed" : data+"/30");
+
         var newData = [];
         parsedData["data"].forEach(function (record) {
             var time = record["transtime"];

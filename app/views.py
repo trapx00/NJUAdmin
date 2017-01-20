@@ -1,7 +1,7 @@
 from app import app,login,course_table
 from bs4 import BeautifulSoup
 import json, requests, os, http.cookiejar, datetime
-from flask import render_template,request, url_for, g, session, redirect, make_response, send_file
+from flask import render_template,request, url_for, g, session, redirect, make_response, send_file, jsonify
 
 urls = {
     "peCard": "http://mapp.nju.edu.cn/mobile/getExerciseInfo.mo", #start and end time needed startDate=2016-08-29&endDate=2017-01-08
@@ -112,6 +112,24 @@ def api_exam_schedules():
         })
     return json.dumps(course_table.get_exams_schedules(username,password),ensure_ascii=False)
 
+@app.route("/api/exam_grades",methods=["POST"])
+def api_exam_grades():
+    username = request.form.get("username")
+    password=request.form.get("password")
+    code=request.form.get("termCode")
+    return json.dumps(course_table.get_grades(username,password,code),ensure_ascii=False)
+
+@app.route("/api/valid_terms",methods=["POST"])
+def api_valid_terms():
+    username = request.form.get("username")
+    password=request.form.get("password")
+    if not username or not password:
+        return json.dumps({
+            "status":"error",
+            "description":"not logged in"
+        })
+    return json.dumps(course_table.get_valid_terms(username,password),ensure_ascii=False)
+
 @app.route("/pecard")
 def pecard():
     return render_template("pecard.html")
@@ -174,11 +192,12 @@ def new_course_table():
 def exams_grades():
     return render_template("exams_grades.html")
 
+
 @app.route("/login",methods=["GET","POST"])
 def logins():
     login_url="http://cer.nju.edu.cn/amserver/UI/Login"
     filename=datetime.datetime.now().timestamp()
-    captcha_path = os.path.join(os.path.dirname(__file__), "static/temp/{0}.jpg".format(filename))
+    captcha_path = os.path.join(os.path.dirname(__file__), os.path.join("static","temp","{0}.jpg".format(filename)))
     if session.get("captcha_path") and os.path.exists(session.get("captcha_path")):
         os.remove(session["captcha_path"])
     if request.method=="GET":

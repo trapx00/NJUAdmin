@@ -24,12 +24,15 @@ function updateHeaderInfo() {
         if (weeksInfo) {
             var currentWeek = weeksInfo.split("/")[0],
                 totalWeek = weeksInfo.split("/")[1];
-            $("#date").text("这是第" + currentWeek + "/" + totalWeek + "周");
+                
+            $("#date").text( currentWeek==="undefined" ?"还没开学吧？": "这是第" + currentWeek + "/" + totalWeek + "周");
         }
         else {
             $.get("/api/weeks_info", function (data) {
                 var parsedData = JSON.parse(data);
-                var prompt = "这是第" + parsedData["currentWeek"] + "/" + parsedData["totalWeek"] + "周";
+                var prompt = parsedData["currentWeek"] 
+                             ?"这是第" + parsedData["currentWeek"] + "/" + parsedData["totalWeek"] + "周"
+                             :"还没开学吧？";
                 $("#date").text(prompt);
                 window.localStorage["weeksInfo"]=parsedData["currentWeek"] + "/" + parsedData["totalWeek"];
             });

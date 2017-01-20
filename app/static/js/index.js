@@ -2,7 +2,9 @@
 
 function updateInfo(){
     $.get("/api/pe_card",function(data){
-        $("#pe_time").text(JSON.parse(data)["data"]["msg"]+"/30");
+        var data = JSON.parse(data)["data"]["msg"];
+        $("#pe_time").text(data.includes("未查询到") ? "Failed" : data+"/30");
+        
     });
     $.get("/api/card_info",function(data){
         $("#balance").text(JSON.parse(data)["data"]["balance"]);
