@@ -20,7 +20,7 @@ itsdangerous==0.24
 jsonpickle==0.9.3
 language-selector==0.1
 lxml==3.6.4
-markdown2==2.3.1
+markdown2==2.4.0
 pycrypto==2.6.1
 pycurl==7.19.3
 pygobject==3.12.0
