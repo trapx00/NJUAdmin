@@ -15,7 +15,7 @@ colorama==0.2.5
 command-not-found==0.3
 ecdsa==0.13
 future==0.16.0
-html5lib==0.999
+html5lib==0.99999999
 itsdangerous==0.24
 jsonpickle==0.9.3
 language-selector==0.1
